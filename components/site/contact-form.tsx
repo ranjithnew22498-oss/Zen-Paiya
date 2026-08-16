@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Mail, CheckCircle2, AlertCircle, Loader2, UploadCloud } from 'lucide-react';
+import { Mail, CircleCheck as CheckCircle2, CircleAlert as AlertCircle, Loader as Loader2, CloudUpload as UploadCloud } from 'lucide-react';
 
 type FormState = 'idle' | 'submitting' | 'success' | 'error';
 type Interest = 'Hire Talent' | 'Career Opportunity' | 'General Enquiry';
@@ -40,7 +40,29 @@ export function ContactForm() {
     setFormState('submitting');
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1200));
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/send-contact-email`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
+          },
+          body: JSON.stringify({
+            fullName: formData.get('fullName'),
+            email: formData.get('email'),
+            company: formData.get('company'),
+            phone: formData.get('phone'),
+            interest: formData.get('interest'),
+            message: formData.get('message'),
+            resumeName: resumeName || null,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error('Failed to send');
+      }
 
       setFormState('success');
       setResumeName('');
