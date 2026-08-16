@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Cpu, ArrowRight, Mail } from 'lucide-react';
 import { navItems } from '@/lib/data';
+import Image from 'next/image';
 
 export function Footer() {
   return (
@@ -34,12 +35,14 @@ export function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link href="/" className="flex items-center gap-2 mb-6">
-              <div className="flex h-9 w-9 items-center justify-center rounded-sm bg-brand-blue/10 border border-brand-blue/30">
-                <Cpu className="h-5 w-5 text-brand-blue" />
-              </div>
-              <span className="font-display text-xl font-bold tracking-tight">
-                ZEN<span className="text-brand-blue">PIYA</span>
-              </span>
+               <Image
+                src="/images/logo-mark.png"
+                alt="Zenpiya"
+                width={64}
+                height={64}
+                priority
+                className="h-16 w-16"
+              />
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
               Connecting Exceptional Talent with Tomorrow&apos;s Technologies
