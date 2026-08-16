@@ -61,10 +61,10 @@ export function Header() {
               <Image
                 src="/images/logo-mark.png"
                 alt="Zenpiya"
-                width={32}
-                height={32}
+                width={64}
+                height={64}
                 priority
-                className="h-8 w-8"
+                className="h-16 w-16"
               />
             </Link>
 
