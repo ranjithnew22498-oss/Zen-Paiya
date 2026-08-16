@@ -59,7 +59,7 @@ export function Header() {
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 group">
               <Image
-                src="/logo-mark.png"
+                src="/images/logo-mark.png"
                 alt="Zenpiya"
                 width={32}
                 height={32}
